@@ -4,11 +4,11 @@ import { AuthorizationError } from "@errors/index";
 import { ProtectedServices } from "./common";
 
 export class LanguagesServices extends ProtectedServices {
-  static async listLanguages() {
+  static async list() {
     return prisma.language.findMany();
   }
 
-  static async updateLanguages(userLanguages: UserLanguages) {
+  static async update(userLanguages: UserLanguages) {
     const { username, password, languages } = userLanguages;
 
     if (!(await this.validateCredentials(username, password))) {
@@ -23,6 +23,13 @@ export class LanguagesServices extends ProtectedServices {
       },
       where: { username },
       select: { username: true, languages: true },
+    });
+  }
+
+  static async stats() {
+    return prisma.language.findMany({
+      include: { _count: { select: { users: true } } },
+      orderBy: { users: { _count: "desc" } },
     });
   }
 }

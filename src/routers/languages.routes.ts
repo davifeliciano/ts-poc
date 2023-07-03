@@ -1,4 +1,5 @@
 import {
+  languageStatsController,
   listLanguagesController,
   updateLanguagesController,
 } from "@controllers/languages.controllers";
@@ -10,6 +11,7 @@ const languagesRouter = Router();
 
 languagesRouter
   .get("/", listLanguagesController)
-  .patch("/", validateReqBody(languagesSchema), updateLanguagesController);
+  .patch("/", validateReqBody(languagesSchema), updateLanguagesController)
+  .get("/stats", languageStatsController);
 
 export default languagesRouter;
