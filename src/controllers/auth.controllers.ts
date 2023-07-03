@@ -1,6 +1,6 @@
 import { SignUpRequest, UpdatePasswordRequest } from "@proto/index";
 import { Response } from "express";
-import AuthServices from "@services/auth.services";
+import AuthServices from "@services/users.services";
 
 export async function signUpController(req: SignUpRequest, res: Response) {
   await AuthServices.signUp(req.body);

@@ -11,7 +11,6 @@ const languagesRouter = Router();
 
 languagesRouter
   .get("/", listLanguagesController)
-  .patch("/", validateReqBody(languagesSchema), updateLanguagesController)
   .get("/stats", languageStatsController);
 
 export default languagesRouter;
