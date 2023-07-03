@@ -17,6 +17,14 @@ export interface UpdatePasswordRequest extends Request {
   body: UpdatedUser;
 }
 
+export interface UserLanguages extends User {
+  languages: number[];
+}
+
+export interface UserLanguagesRequest extends Request {
+  body: UserLanguages;
+}
+
 export enum ResponseStatus {
   OK = 200,
   CREATED = 201,
